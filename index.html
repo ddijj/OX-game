@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+      <h1>OXゲーム</h1>
+<div class="app">
+    <p class="ban" id="ban">
+        Ｏのターン
+    </p>
+<table class="ta">
+  <tr>
+    <td><button type="button" id="aa" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="ab" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="ac" onclick="fu(this.id)" class="OX"></button></td>
+  </tr>
+  <tr>
+    <td><button type="button" id="ba" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="bb" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="bc" onclick="fu(this.id)" class="OX"></button></td>
+  </tr>
+  <tr>
+    <td><button type="button" id="ca" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="cb" onclick="fu(this.id)" class="OX"></button></td>
+    <td><button type="button" id="cc" onclick="fu(this.id)" class="OX"></button></td>
+  </tr>
+</table>
+</div>
+<p id="ROGO">
+<a href="https://ddijj.github.io"><img src="サムネ.png"></a>
+</p>
+<script>
+  let y=true
+      let x =true
+    let t="X"
+    let O;
+    let C;
+    let turn=true;
+    let OX1=["aa","ab","ac","ba","bb","bc","ca","cb","cc"];
+    let OX2=["","","","","","","","",""]
+    function fu(event) {
+        if(OX2[(OX1.indexOf(event))] == "" && x){
+        if(turn){
+        t="O"
+        turn=false
+        ban.innerHTML = "Ｘのターン";
+       }
+       else{
+        t="X"
+        turn=true
+        ban.innerHTML = "Ｏのターン";
+        }
+       var elem = document.getElementById(event);
+       elem.innerHTML = t;
+       OX2[(OX1.indexOf(event))]=t
+       console.log(OX2)
+       han()
+       if(t == "O"){
+        console.log("CCCP")
+        AI()
+       }
+      }
+    }
+    function han(){
+      if(OX2[0]==OX2[3] && OX2[0]==OX2[6] && OX2[0]!=""){
+        ban.innerHTML = `${t}の勝利です`;
+        x=false
+       }
+       if(OX2[1]==OX2[4] && OX2[1]==OX2[7] && OX2[1]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[2]==OX2[5] && OX2[2]==OX2[8] && OX2[2]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[0]==OX2[1] && OX2[0]==OX2[2] && OX2[0]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[3]==OX2[4] && OX2[3]==OX2[5] && OX2[3]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[6]==OX2[7] && OX2[6]==OX2[8] && OX2[6]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[0]==OX2[4] && OX2[0]==OX2[8] && OX2[0]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+       }
+       if(OX2[2]==OX2[4] && OX2[2]==OX2[6] && OX2[2]!=""){
+        x=false
+        ban.innerHTML = `${t}の勝利です`;
+    }
+    }
+    function AI(){
+      y=true
+      console.log(y)
+      if(OX2[4]==""){
+        fu("bb")
+        y=false
+      }
+      else{
+        AI2()
+        if(y){
+          console.log("RU")
+        AI4()
+        }
+      }
+    }
+    function AI2(){
+      AI3(0,1,"ac")
+      AI3(2,0,"ab")
+      AI3(2,1,"aa")
+      AI3(3,4,"bc")
+      AI3(3,5,"bb")
+      AI3(4,5,"ba")
+      AI3(6,7,"cc")
+      AI3(6,8,"cb")
+      AI3(6,8,"ca")
+      AI3(0,3,"ca")
+      AI3(0,6,"ba")
+      AI3(3,6,"aa")
+      AI3(1,4,"cb")
+      AI3(1,7,"bb")
+      AI3(4,7,"ab")
+      AI3(2,5,"cc")
+      AI3(2,8,"bc")
+      AI3(5,8,"ac")
+      AI3(2,4,"ca")
+      AI3(0,4,"cc")
+      AI3(4,8,"cc")
+    }
+    function AI3(i,o,p){
+      if(OX2[i]==OX2[o] && OX2[i]!="" && OX2[OX1.indexOf(p)] == ""&& y){
+          fu(p)
+          y=false
+          console.log(i,o,p)
+      }
+    }
+    function AI4(){
+      while(!C){
+        C=false
+        O =Math.floor( Math.random() * OX1.length)
+        console.log(O)
+        if(OX2[O] == ""){
+          C=true
+        }
+      }
+      fu(OX1[O])
+      C=false
+    }
+</script> 
+</body>
+</html>

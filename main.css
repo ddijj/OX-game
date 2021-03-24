@@ -1,0 +1,39 @@
+.OX{
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+}
+.ban{
+    font-size: 50px;
+    text-align: center;
+}
+.ta{
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    -webkit-transform : translate(-50%,-50%);
+    transform : translate(-50%,-50%);
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: rgb(0, 109, 252);
+}
+
+.app{
+    position: relative;
+    height: 200px;
+}
+
+body{
+    background-color: deepskyblue;
+}
+h1{
+    text-align: center;
+}
+
+#ROGO{
+    bottom: 0;
+    right: 10px;
+    position: absolute;
+}
